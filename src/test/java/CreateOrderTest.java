@@ -68,7 +68,6 @@ public class CreateOrderTest {
 
         // Сохраняем track для удаления заказа
         track = response.jsonPath().getString("track");
-        System.out.println("Создан заказ с track: " + track);
     }
 
     @Test
@@ -91,7 +90,6 @@ public class CreateOrderTest {
 
         // Сохраняем track для удаления заказа
         track = response.jsonPath().getString("track");
-        System.out.println("Создан заказ с track: " + track);
     }
 
     @Test
@@ -114,7 +112,6 @@ public class CreateOrderTest {
 
         // Сохраняем track для удаления заказа
         track = response.jsonPath().getString("track");
-        System.out.println("Создан заказ с track: " + track);
     }
 
     @Test
@@ -135,7 +132,6 @@ public class CreateOrderTest {
 
         // Сохраняем track для удаления заказа
         track = response.jsonPath().getString("track");
-        System.out.println("Создан заказ с track: " + track);
     }
 
     @AfterEach
@@ -150,7 +146,6 @@ public class CreateOrderTest {
                     .then()
                     .statusCode(200);
 
-            System.out.println("Заказ с track " + track + " успешно отменён.");
             track = null;
         }
     }

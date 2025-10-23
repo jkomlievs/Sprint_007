@@ -44,7 +44,5 @@ public class GetOrderListTest {
         // Проверка, что список заказов не пуст
         assertFalse(orders.isEmpty(), "Ошибка: список заказов пуст!");
 
-        // Дополнительно можно проверить количество заказов
-        System.out.println("Количество заказов: " + orders.size());
     }
 }

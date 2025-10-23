@@ -1,20 +1,16 @@
-package org.example.service;
+package util;
 
-import io.restassured.response.Response;
-import lombok.Getter;
 import org.example.CourierData.Courier;
 
 import static io.restassured.RestAssured.given;
 
-public class CourierService {
+public class CourierUtil {
 
-    public static final String LOGIN_1 = "Ivanna127";
-    public static final String PASSWORD_1 = "12345";
-    public static final String NAME_1 = "Ivan";
-    @Getter
-    private String id; //переменная для хранения id созданного курьера
+    public static final String LOGIN_1 = "Ivanna1299";
+    public static final String PASSWORD_1 = "1234567";
+    public static final String NAME_1 = "Ivana";
 
-    public void create(Courier courier) {
+    public static void create(Courier courier) {
         given()
                 .header("Content-type", "application/json")
                 .body(courier)
@@ -22,19 +18,22 @@ public class CourierService {
                 .post("/api/v1/courier");
     }
 
-    public void login() {
-        Response loginResponse = given()
+
+    public static String login(String login, String password) {
+        return given()
                 .header("Content-type", "application/json")
-                .body(String.format("{\"login\": \"%s\", \"password\": \"%s\"}", LOGIN_1, PASSWORD_1))
+                .body(String.format("{\"login\": \"%s\", \"password\": \"%s\"}", login, password))
                 .when()
                 .post("/api/v1/courier/login")
                 .then()
                 .extract()
-                .response();
-        id = loginResponse.jsonPath().getString("id");
+                .response()
+                .jsonPath()
+                .getString("id");
     }
 
-    public void clear() {
+
+    public static void delete(String id) {
         if (id != null) {
             given()
                     .header("Content-type", "application/json")
@@ -42,7 +41,6 @@ public class CourierService {
                     .delete("/api/v1/courier/" + id)
                     .then()
                     .statusCode(200);
-            id = null;
         }
     }
 }
